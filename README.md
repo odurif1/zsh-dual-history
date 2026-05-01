@@ -1,11 +1,13 @@
 # fzf-dual-history
 
 Separate human shell commands from AI instructions in fzf's Ctrl+R history search.
+Designed for Forge with Oh My Zsh.
 
 ## The problem
 
-AI assistants in the terminal (Forge, OpenCode, Claude CLI, etc.) prefix
-instructions with `:` (a zsh no-op). These pollute Ctrl+R and `history` output.
+Forge (with Oh My Zsh) sends instructions to AI models by prefixing them with
+`:` (a zsh no-op builtin). These instructions pollute your `Ctrl+R` and `history`
+output, mixing with your day-to-day shell commands.
 
 ## The solution
 
