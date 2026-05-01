@@ -20,7 +20,19 @@ Both histories are preserved and independently searchable.
 
 ## Installation
 
-### Oh My Zsh
+### With your AI coding agent (recommended)
+
+Just paste this into Forge, OpenCode, Claude Code, or any coding agent:
+
+```
+Install the fzf-dual-history Oh My Zsh plugin from github.com/odurif1/fzf-dual-history
+```
+
+The agent will clone the repo, symlink it into `$ZSH_CUSTOM/plugins/`, add
+`fzf-dual-history` to your `~/.zshrc` plugins array (after `fzf`), and clean up
+any inline patches.
+
+### Manual (Oh My Zsh)
 
 ```bash
 git clone https://github.com/odurif1/fzf-dual-history.git \
@@ -33,7 +45,7 @@ Then in `~/.zshrc` (**after** `fzf`):
 plugins=(... fzf fzf-dual-history)
 ```
 
-### Standalone (without Oh My Zsh)
+### Manual (without Oh My Zsh)
 
 ```bash
 git clone https://github.com/odurif1/fzf-dual-history.git ~/.fzf-dual-history
@@ -41,18 +53,6 @@ echo 'source ~/.fzf-dual-history/fzf-dual-history.plugin.zsh' >> ~/.zshrc
 ```
 
 **Requirements:** zsh 5.0+, fzf 0.52.0+
-
-### Install with your Forge agent
-
-The fastest way — just paste this into Forge:
-
-```
-Install the fzf-dual-history Oh My Zsh plugin from github.com/odurif1/fzf-dual-history
-```
-
-Forge will clone the repo, symlink it into `$ZSH_CUSTOM/plugins/`, add
-`fzf-dual-history` to your `~/.zshrc` plugins array (after `fzf`), and clean up
-any inline patches if present.
 
 ## Usage
 
