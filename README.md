@@ -3,42 +3,11 @@
 Separate human shell commands from AI instructions in zsh history.
 Designed for Forge with Oh My Zsh — with first-class fzf integration.
 
-## What it does
-
-**Two layers, one plugin:**
-
-### Layer 1 — Clean history (always active, no dependencies)
-
-A `zshaddhistory` hook routes `:` commands to `~/.zsh_ai_history` and keeps
-them out of `~/.zsh_history`. This means **every** history feature stays clean:
-
-| Tool | What you see |
-|------|-------------|
-| `history` / `fc -l` | Human commands only |
-| `!!` / `!$` (bang expansion) | Human commands only |
-| Completion based on history | Human commands only |
-| `cat ~/.zsh_history` | Human commands only |
-| `cat ~/.zsh_ai_history` | AI instructions only |
-
-### Layer 2 — fzf search (opt-in, requires fzf)
-
-The `Ctrl+R` widget is replaced with a smart fzf interface that shows **all**
-history by default, with one-key toggles to switch views on the fly.
-
 ## The problem
 
 Forge (with Oh My Zsh) sends instructions to AI models by prefixing them with
 `:` (a zsh no-op builtin). These instructions pollute your `Ctrl+R` and `history`
 output, mixing with your day-to-day shell commands.
-
-## The solution
-
-`zsh-dual-history` intercepts every command via `zshaddhistory`:
-
-- `:` prefixed commands → `~/.zsh_ai_history`
-- Everything else → `~/.zsh_history`
-
-Both histories are preserved and independently searchable.
 
 ## Installation
 
@@ -90,6 +59,28 @@ echo 'source ~/.zsh-dual-history/zsh-dual-history.plugin.zsh' >> ~/.zshrc
 | `cat ~/.zsh_ai_history` | View raw AI instruction history   |
 
 The fzf header always shows the current active view.
+
+## What it does
+
+**Two layers, one plugin:**
+
+### Layer 1 — Clean history (always active, no dependencies)
+
+A `zshaddhistory` hook routes `:` commands to `~/.zsh_ai_history` and keeps
+them out of `~/.zsh_history`. This means **every** history feature stays clean:
+
+| Tool | What you see |
+|------|-------------|
+| `history` / `fc -l` | Human commands only |
+| `!!` / `!$` (bang expansion) | Human commands only |
+| Completion based on history | Human commands only |
+| `cat ~/.zsh_history` | Human commands only |
+| `cat ~/.zsh_ai_history` | AI instructions only |
+
+### Layer 2 — fzf search (opt-in, requires fzf)
+
+The `Ctrl+R` widget is replaced with a smart fzf interface that shows **all**
+history by default, with one-key toggles to switch views on the fly.
 
 ## How it works
 
