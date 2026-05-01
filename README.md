@@ -42,6 +42,18 @@ echo 'source ~/.fzf-dual-history/fzf-dual-history.plugin.zsh' >> ~/.zshrc
 
 **Requirements:** zsh 5.0+, fzf 0.52.0+
 
+### Install with your Forge agent
+
+The fastest way — just paste this into Forge:
+
+```
+Install the fzf-dual-history Oh My Zsh plugin from github.com/odurif1/fzf-dual-history
+```
+
+Forge will clone the repo, symlink it into `$ZSH_CUSTOM/plugins/`, add
+`fzf-dual-history` to your `~/.zshrc` plugins array (after `fzf`), and clean up
+any inline patches if present.
+
 ## Usage
 
 | Shortcut  | Action                                       |
