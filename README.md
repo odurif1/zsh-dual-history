@@ -1,7 +1,29 @@
 # fzf-dual-history
 
-Separate human shell commands from AI instructions in fzf's Ctrl+R history search.
-Designed for Forge with Oh My Zsh.
+Separate human shell commands from AI instructions in zsh history.
+Designed for Forge with Oh My Zsh — with first-class fzf integration.
+
+## What it does
+
+**Two layers, one plugin:**
+
+### Layer 1 — Clean history (always active, no dependencies)
+
+A `zshaddhistory` hook routes `:` commands to `~/.zsh_ai_history` and keeps
+them out of `~/.zsh_history`. This means **every** history feature stays clean:
+
+| Tool | What you see |
+|------|-------------|
+| `history` / `fc -l` | Human commands only |
+| `!!` / `!$` (bang expansion) | Human commands only |
+| Completion based on history | Human commands only |
+| `cat ~/.zsh_history` | Human commands only |
+| `cat ~/.zsh_ai_history` | AI instructions only |
+
+### Layer 2 — fzf search (opt-in, requires fzf)
+
+The `Ctrl+R` widget is replaced with a smart fzf interface that shows **all**
+history by default, with one-key toggles to switch views on the fly.
 
 ## The problem
 
@@ -52,7 +74,8 @@ git clone https://github.com/odurif1/fzf-dual-history.git ~/.fzf-dual-history
 echo 'source ~/.fzf-dual-history/fzf-dual-history.plugin.zsh' >> ~/.zshrc
 ```
 
-**Requirements:** zsh 5.0+, fzf 0.52.0+
+**Requirements:** zsh 5.0+
+**fzf integration requires:** fzf 0.52.0+ (plugin still works without it)
 
 ## Usage
 
@@ -70,15 +93,24 @@ The fzf header always shows the current active view.
 
 ## How it works
 
+### Core (works everywhere, no dependencies)
+
 ```
 Command typed → zshaddhistory hook → starts with ":"?
                                       ├─ Yes → ~/.zsh_ai_history
                                       └─ No  → ~/.zsh_history
 ```
 
-The Ctrl+R widget opens fzf with all history by default. Tab/Alt keys use
-fzf's `reload` and `transform` actions to switch data sources dynamically.
-Tab state is keyed on the fzf PID so multiple fzf instances don't interfere.
+The hook runs before zsh writes anything to disk. It's a single `if` statement
+that checks the command prefix — nothing else touches your config.
+
+### fzf integration (builds on top of the core)
+
+The `Ctrl+R` widget is replaced with a custom fzf launcher that opens with
+**all** history (human + AI merged) by default. Tab and Alt keys use fzf's
+`reload` and `transform` actions to switch data sources dynamically without
+closing and reopening fzf. Tab state is keyed on the fzf PID so multiple fzf
+instances don't interfere.
 
 ## Configuration
 
