@@ -1,14 +1,17 @@
-# fzf-dual-history — Separate human commands from AI instructions in Ctrl+R
+# zsh-dual-history — Separate human commands from AI instructions in zsh history
 #
-# Requires: zsh 5.0+, fzf 0.52.0+
-# Optional: Oh My Zsh (works standalone too)
+# Core (always active, no dependencies):
+#   zshaddhistory hook routes ":" commands to ~/.zsh_ai_history
+#
+# Requires fzf 0.52.0+ for the Ctrl+R widget integration.
+# Oh My Zsh recommended but optional.
 #
 # Installation (Oh My Zsh):
-#   1. Copy this directory to: $ZSH_CUSTOM/plugins/fzf-dual-history/
-#   2. Add "fzf-dual-history" AFTER "fzf" in plugins=(...) in ~/.zshrc
+#   1. Copy this directory to: $ZSH_CUSTOM/plugins/zsh-dual-history/
+#   2. Add "zsh-dual-history" to plugins=(...) in ~/.zshrc
 #
 # Installation (standalone):
-#   source /path/to/fzf-dual-history.plugin.zsh
+#   source /path/to/zsh-dual-history.plugin.zsh
 #
 # Configuration (optional, set before sourcing):
 #   DUAL_HISTORY_AI_FILE  — path to AI history file (default: ~/.zsh_ai_history)
@@ -34,7 +37,7 @@ add-zsh-hook zshaddhistory _dual_history_zshaddhistory
 
 # ---- Helper scripts for fzf reload (fzf runs reload via /bin/sh) ----
 _DH_PLUGIN_DIR="${0:A:h}"
-_DH_RELOAD_DIR="${XDG_CACHE_HOME:-$HOME}/.cache/fzf-dual-history"
+_DH_RELOAD_DIR="${XDG_CACHE_HOME:-$HOME}/.cache/zsh-dual-history"
 
 if [[ -d "$_DH_PLUGIN_DIR/shell" ]]; then
   mkdir -p "$_DH_RELOAD_DIR"

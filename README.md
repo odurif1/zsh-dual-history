@@ -1,4 +1,4 @@
-# fzf-dual-history
+# zsh-dual-history
 
 Separate human shell commands from AI instructions in zsh history.
 Designed for Forge with Oh My Zsh — with first-class fzf integration.
@@ -33,7 +33,7 @@ output, mixing with your day-to-day shell commands.
 
 ## The solution
 
-`fzf-dual-history` intercepts every command via `zshaddhistory`:
+`zsh-dual-history` intercepts every command via `zshaddhistory`:
 
 - `:` prefixed commands → `~/.zsh_ai_history`
 - Everything else → `~/.zsh_history`
@@ -44,34 +44,34 @@ Both histories are preserved and independently searchable.
 
 ### With your AI coding agent (recommended)
 
-Just paste this into Forge, OpenCode, Claude Code, or any coding agent:
+Just paste this to any coding agent:
 
 ```
-Install the fzf-dual-history Oh My Zsh plugin from github.com/odurif1/fzf-dual-history
+Install the zsh-dual-history Oh My Zsh plugin from github.com/odurif1/zsh-dual-history
 ```
 
 The agent will clone the repo, symlink it into `$ZSH_CUSTOM/plugins/`, add
-`fzf-dual-history` to your `~/.zshrc` plugins array (after `fzf`), and clean up
+`zsh-dual-history` to your `~/.zshrc` plugins array, and clean up
 any inline patches.
 
 ### Manual (Oh My Zsh)
 
 ```bash
-git clone https://github.com/odurif1/fzf-dual-history.git \
-  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/fzf-dual-history
+git clone https://github.com/odurif1/zsh-dual-history.git \
+  ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/plugins/zsh-dual-history
 ```
 
-Then in `~/.zshrc` (**after** `fzf`):
+Then in `~/.zshrc`:
 
 ```zsh
-plugins=(... fzf fzf-dual-history)
+plugins=(... zsh-dual-history)
 ```
 
 ### Manual (without Oh My Zsh)
 
 ```bash
-git clone https://github.com/odurif1/fzf-dual-history.git ~/.fzf-dual-history
-echo 'source ~/.fzf-dual-history/fzf-dual-history.plugin.zsh' >> ~/.zshrc
+git clone https://github.com/odurif1/zsh-dual-history.git ~/.zsh-dual-history
+echo 'source ~/.zsh-dual-history/zsh-dual-history.plugin.zsh' >> ~/.zshrc
 ```
 
 **Requirements:** zsh 5.0+
